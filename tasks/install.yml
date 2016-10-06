@@ -13,5 +13,5 @@
   when: ansible_os_family == 'Debian'
 
 # Centos
-- name: 
-  yum: name=http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-redhat95-9.5-2.noarch.rpm state=present
+#- name: 
+#  yum: name=http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-redhat95-9.5-2.noarch.rpm state=present
