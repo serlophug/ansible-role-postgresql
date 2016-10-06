@@ -1,0 +1,27 @@
+galaxy_info:
+  author: Sergio López
+  description: Install PostgresSQL 9.6
+  license: PostgreSQL License
+  min_ansible_version: 1.8
+  platforms:
+  - name: CentOS
+    versions:
+    - 6
+    - 7  
+  - name: Ubuntu
+    versions:
+    - precise
+    - xenial
+    - wily
+    - trusty
+  - name: Debian
+    versions:
+    - squeeze 
+    - wheezy
+    - jessie
+  galaxy_tags:
+    - PostgresSQL
+    - postgres
+    - database
+    - sql
+dependencies: []

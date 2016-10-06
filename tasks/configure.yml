@@ -1,0 +1,5 @@
+---
+- name: Restart Postgresql on Ubuntu
+  notify:
+   - restart postgresql-ubuntu
+  when: ansible_os_family == 'Debian'

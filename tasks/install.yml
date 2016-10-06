@@ -1,0 +1,17 @@
+---
+# Debian
+- name: Add key on Debian
+  apt_key: url='https://www.postgresql.org/media/keys/ACCC4CF8.asc' state=present
+  when: ansible_os_family == 'Debian'
+
+- name: Add repository on Debian
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main' state=present
+  when: ansible_os_family == 'Debian'
+
+- name: Install PostgreSQL on Debian
+  apt: name=postgresql-{{ postgresql_version }} state=present update_cache=yes
+  when: ansible_os_family == 'Debian'
+
+# Centos
+- name: 
+  yum: name=http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-redhat95-9.5-2.noarch.rpm state=present
