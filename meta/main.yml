@@ -4,7 +4,7 @@ galaxy_info:
   license: PostgreSQL License
   min_ansible_version: 1.8
   platforms:
-  - name: CentOS
+  - name: EL
     versions:
     - 6
     - 7  
