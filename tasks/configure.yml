@@ -1,5 +1,6 @@
 ---
 - name: Restart Postgresql on Ubuntu
-  notify:
-   - restart postgresql-ubuntu
+  action: shell service {{ postgresql_service_name }} start
+  #notify:
+  # - restart postgresql-ubuntu
   when: ansible_os_family == 'Debian'
