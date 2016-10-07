@@ -16,8 +16,8 @@ The variables that can be passed to this role and a brief description about them
   postgresql_version: 9.6
   postgresql_service_name: postgresql
   root_user:
-      name: admin
-      password: 1234	
+      name: postgres
+      password: postgres-.,	
 ```
 
 Example Playbook
