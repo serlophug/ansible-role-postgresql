@@ -1,6 +1,5 @@
 postgresql_version: 9.6
 postgresql_service_name: postgresql
-"root_user":{
-  "name": "postgres",
-  "password": "postgres-.,"
-}
+root_user:
+  name: postgres,
+  password: postgres-.,
