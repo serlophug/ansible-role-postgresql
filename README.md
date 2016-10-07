@@ -8,8 +8,8 @@ Role Variables
 
 The variables that can be passed to this role and a brief description about them are as follows:
 	
-   ```postgresql_version ```: What version try to install.<br /> 
-   ```postgresql_service_name```: Name of service. <br />
+   ```postgresql_version```: Version to install (see which supports in /meta/main.wml).<br /> 
+   ```postgresql_service_name```: Service name. <br />
    ```root_user```: Name and password of database user. <br /><br />
    Default values:
 ```yml
