@@ -1,6 +1,5 @@
 ---
 # Debian
-tasks:
 - name: Add key on Debian
   apt_key: url='https://www.postgresql.org/media/keys/ACCC4CF8.asc' state=present
   when: ansible_os_family == 'Debian'
