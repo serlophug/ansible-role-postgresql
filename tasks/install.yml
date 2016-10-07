@@ -1,5 +1,6 @@
 ---
 # Debian
+tasks:
 - name: Add key on Debian
   apt_key: url='https://www.postgresql.org/media/keys/ACCC4CF8.asc' state=present
   when: ansible_os_family == 'Debian'
@@ -12,6 +13,16 @@
   apt: name=postgresql-{{ postgresql_version }} state=present update_cache=yes
   when: ansible_os_family == 'Debian'
 
-# Centos
-#- name: 
-#  yum: name=http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-redhat95-9.5-2.noarch.rpm state=present
+# Centos  
+- name:  Yum rpm from CentOs 6
+  #https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-centos96-9.6-3.noarch.rpm
+  #https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-3.noarch.rpm
+  #https://download.postgresql.org/pub/repos/yum/9.2/redhat/rhel-6-x86_64/pgdg-oraclelinux92-9.2-9.noarch.rpm
+  yum: name=https://download.postgresql.org/pub/repos/yum/{{ postgresql_version }}/redhat/rhel-6-x86_64/pgdg-centos{{ postgresql_version }}.split('.')[0]{{ postgresql_version }}.split('.')[1]-{{ postgresql_version }}-3.noarch.rpm state=present
+  when: ansible_distribution_release == 'CentOs'
+  ignore_errors: yes
+
+- name: Install PostgreSQL on CentOs
+  yum: name=postgresql{{ postgresql_version }}.split('.')[0]{{ postgresql_version }}.split('.')[1]-server,postgresql{{ postgresql_version }}.split('.')[0]{{ postgresql_version }}.split('.')[1]-contrib state=present
+  when: ansible_distribution_release == 'CentOs'
+  ignore_errors: yes

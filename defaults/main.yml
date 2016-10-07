@@ -1,1 +1,5 @@
 postgresql_version: 9.6
+
+root_user:
+	name: admin
+    password: 1234
