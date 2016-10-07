@@ -14,10 +14,10 @@
   # - restart postgresql-ubuntu
   when: ansible_os_family == 'Debian'
 
-- name: initdb on CentOs
+- name: initdb on Red Hat
   action: shell service postgresql-{{ postgresql_version }} initdb
-  when: ansible_distribution_release == 'CentOs'
+  when: ansible_os_family == 'RedHat' 
 
-- name: chkconfig on CentOs
+- name: chkconfig on Red Hat
   action: shell chkconfig postgresql-{{ postgresql_version }} on service postgresql-{{ postgresql_version }} start
-  when: ansible_distribution_release == 'CentOs'
+  when: ansible_os_family == 'RedHat' 
