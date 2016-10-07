@@ -18,10 +18,10 @@
   #https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-3.noarch.rpm
   #https://download.postgresql.org/pub/repos/yum/9.2/redhat/rhel-6-x86_64/pgdg-oraclelinux92-9.2-9.noarch.rpm
   yum: name=https://download.postgresql.org/pub/repos/yum/{{ postgresql_version }}/redhat/rhel-6-x86_64/pgdg-centos{{ postgresql_version }}.split('.')[0]{{ postgresql_version }}.split('.')[1]-{{ postgresql_version }}-3.noarch.rpm state=present
-  when: ansible_distribution_release == 'CentOs'
+  when: ansible_os_family == 'RedHat' 
   ignore_errors: yes
 
-- name: Install PostgreSQL on CentOs
+- name: Install PostgreSQL on Red Hat
   yum: name=postgresql{{ postgresql_version }}.split('.')[0]{{ postgresql_version }}.split('.')[1]-server,postgresql{{ postgresql_version }}.split('.')[0]{{ postgresql_version }}.split('.')[1]-contrib state=present
-  when: ansible_distribution_release == 'CentOs'
+  when: ansible_os_family == 'RedHat' 
   ignore_errors: yes
