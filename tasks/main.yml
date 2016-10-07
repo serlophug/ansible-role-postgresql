@@ -1,9 +1,9 @@
 ---
 # Add a fast check to speed reconfiguration
-- stat: path=/etc/postgresql
-  register: postgresql_installed
+#- stat: path=/etc/postgresql
+#  register: postgresql_installed
 
 - include: install.yml
-  when: not postgresql_installed.stat.exists
+#  when: not postgresql_installed.stat.exists
 
 - include: configure.yml
