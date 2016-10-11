@@ -35,6 +35,7 @@
                  lc_ctype='en_US.UTF-8'
                  template='template0'
                  state=present
+  when: create_db == 'yes'
 
 - name: Create Postgresql user
   sudo_user: postgres

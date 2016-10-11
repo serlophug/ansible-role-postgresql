@@ -10,14 +10,18 @@ The variables that can be passed to this role and a brief description about them
 	
    ```postgresql_version```: Version to install (see which supports in /meta/main.wml).<br /> 
    ```postgresql_service_name```: Service name. <br />
+	```db_name```: Database name. <br />
+	```create_db```: Whether or not create database "db_name". <br />
    ```root_user```: Name and password of database user. <br /><br />
    Default values:
 ```yml
   postgresql_version: 9.6
   postgresql_service_name: postgresql
+  db_name: database
+  create_db: yes
   root_user:
       name: postgres
-      password: postgres-.,	
+      password: default,	
 ```
 
 Example Playbook
