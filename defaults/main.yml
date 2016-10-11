@@ -3,4 +3,4 @@ postgresql_service_name: postgresql
 db_name: database
 root_user:
   name: postgres,
-  password: postgres-.,
+  password: default

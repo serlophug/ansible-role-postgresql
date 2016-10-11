@@ -34,7 +34,7 @@
 
 - name: Ensure user does not have unnecessary privileges
   sudo_user: postgres
-  postgresql_user: name={{ db_user }}
+  postgresql_user: name={{ root_user.name }}
                    role_attr_flags=SUPERUSER,CREATEROLE,CREATEDB,INHERIT,LOGIN,REPLICATION
                    state=present
 ##
