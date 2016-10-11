@@ -9,13 +9,13 @@
   when: ansible_os_family == 'Debian'
 
 - name: Install PostgreSQL on Debian
-  apt: name=postgresql-{{ postgresql_version }} state=present update_cache=yes
+  apt: name=python-psycopg2,postgresql-{{ postgresql_version }} state=present update_cache=yes
   when: ansible_os_family == 'Debian'
 
 # Centos  
 - name: Format postgresql_version
   action: shell echo {{postgresql_version}}
-  registrer: result
+  register: result
 
 - name:  Yum rpm from CentOs 6
   #https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-centos96-9.6-3.noarch.rpm
@@ -27,6 +27,6 @@
   ignore_errors: yes
 
 - name: Install PostgreSQL on Red Hat
-  yum: name=postgresql{{ result.stdout.split('.')[0] }}{{result.stdout.split('.')[1]}}-server,postgresql{{result.stdout.split('.')[0]}}{{result.stdout.split('.')[1]}}-contrib state=present
+  yum: name=python-psycopg2,postgresql{{ result.stdout.split('.')[0] }}{{result.stdout.split('.')[1]}}-server,postgresql{{result.stdout.split('.')[0]}}{{result.stdout.split('.')[1]}}-contrib state=present
   when: ansible_os_family == 'RedHat' 
   ignore_errors: yes
