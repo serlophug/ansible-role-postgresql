@@ -1,19 +1,43 @@
 ---
-- name: Create Postgresql user
-  become: yes
-  become_user: postgres
-  postgresql_user:
-    name: "{{ root_user.name }}"
-    password: "{{ root_user.password }}"
-    role_attr_flags: "SUPERUSER,CREATEROLE,CREATEDB,INHERIT,login"
-    state: present
+# - name: Create Postgresql user
+#   become: yes
+#   become_user: postgres
+#   postgresql_user:
+#     login_host: localhost
+#     name: "{{ root_user.name }}"
+#     password: "{{ root_user.password }}"
+#     role_attr_flags: "SUPERUSER,CREATEROLE,CREATEDB,INHERIT,LOGIN,REPLICATION"
+#     state: present
 
 - name: Restart Postgresql on Debian
   service: name={{ postgresql_service_name }} state=restarted
   #notify:
   # - restart postgresql-ubuntu
   when: ansible_os_family == 'Debian'
+##
+- name: Ensure database is created
+  sudo_user: postgres
+  postgresql_db: name={{ db_name }}
+                 encoding='UTF-8'
+                 lc_collate='en_US.UTF-8'
+                 lc_ctype='en_US.UTF-8'
+                 template='template0'
+                 state=present
 
+- name: Ensure user has access to the database
+  sudo_user: postgres
+  postgresql_user: db={{ db_name }}
+                   name={{ root_user.name }}
+                   password={{ root_user.password }}
+                   priv=ALL
+                   state=present
+
+- name: Ensure user does not have unnecessary privileges
+  sudo_user: postgres
+  postgresql_user: name={{ db_user }}
+                   role_attr_flags=SUPERUSER,CREATEROLE,CREATEDB,INHERIT,LOGIN,REPLICATION
+                   state=present
+##
 - name: initdb on Red Hat
   action: shell service postgresql-{{ postgresql_version }} initdb
   when: ansible_os_family == 'RedHat' 
