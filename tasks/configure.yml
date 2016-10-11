@@ -15,6 +15,14 @@
   # - restart postgresql-ubuntu
   when: ansible_os_family == 'Debian'
 ##
+- name: initdb on Red Hat
+  action: shell service postgresql-{{ postgresql_version }} initdb
+  when: ansible_os_family == 'RedHat' 
+
+- name: chkconfig on Red Hat
+  action: shell chkconfig postgresql-{{ postgresql_version }} on service postgresql-{{ postgresql_version }} start
+  when: ansible_os_family == 'RedHat' 
+
 - name: Ensure database is created
   sudo_user: postgres
   postgresql_db: name={{ db_name }}
@@ -38,10 +46,3 @@
                    role_attr_flags=SUPERUSER,CREATEROLE,CREATEDB,INHERIT,LOGIN,REPLICATION
                    state=present
 ##
-- name: initdb on Red Hat
-  action: shell service postgresql-{{ postgresql_version }} initdb
-  when: ansible_os_family == 'RedHat' 
-
-- name: chkconfig on Red Hat
-  action: shell chkconfig postgresql-{{ postgresql_version }} on service postgresql-{{ postgresql_version }} start
-  when: ansible_os_family == 'RedHat' 
