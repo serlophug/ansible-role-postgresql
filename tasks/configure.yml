@@ -19,10 +19,14 @@
   action: shell service postgresql-{{ postgresql_version }} initdb
   when: ansible_os_family == 'RedHat' 
 
-- name: chkconfig on Red Hat
+- name: Start automatically when the OS starts on Red Hat
   action: shell chkconfig postgresql-{{ postgresql_version }} on service postgresql-{{ postgresql_version }} start
   when: ansible_os_family == 'RedHat' 
 
+- name: Restart Postgresql on Debian
+  service: name=postgresql-{{ postgresql_version }} state=restarted
+  when: ansible_os_family == 'RedHat' 
+  
 - name: Ensure database is created
   sudo_user: postgres
   postgresql_db: name={{ db_name }}
