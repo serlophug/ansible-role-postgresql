@@ -18,11 +18,7 @@
   register: result
 
 - name:  Yum rpm from CentOs 6
-  #https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-centos96-9.6-3.noarch.rpm
-  #https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-3.noarch.rpm
-  #https://download.postgresql.org/pub/repos/yum/9.2/redhat/rhel-6-x86_64/pgdg-oraclelinux92-9.2-9.noarch.rpm
   yum: name=https://download.postgresql.org/pub/repos/yum/{{ postgresql_version }}/redhat/rhel-6-x86_64/pgdg-centos{{result.stdout.split('.')[0]}}{{result.stdout.split('.')[1]}}-{{ postgresql_version }}-3.noarch.rpm state=present
-  #yum: name=https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-centos96-9.6-3.noarch.rpm state=present
   when: ansible_os_family == 'RedHat' 
   ignore_errors: yes
 

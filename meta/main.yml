@@ -1,6 +1,6 @@
 galaxy_info:
   author: Sergio López
-  description: Install PostgresSQL 9.6
+  description: Install PostgresSQL 9.6(min 9.3)
   license: PostgreSQL License
   min_ansible_version: 1.8
   platforms:
